@@ -1,0 +1,35 @@
+{% extends 'myapp/base.html' %}
+{% block rk %}
+<div class="row mt-3">
+<div class="col-8">
+ {% if tag %}
+ <h2> Posted tagged with '{{tag.name}}'</h2>
+ {% endif %}
+  {% for post in post_list %}
+  <div class="jumbotron">
+    <h1>{{post.title}}</h1>
+    <p class="lead">{{post.body|truncatewords:30}} <a href="../read/{{post.pk}}" class="btn btn-info">Read More</a></p>
+    <hr>
+    <p>Releted Tags :- {% for tag in post.tags.all %}
+    <a class="btn btn-sm btn-secondary text-white ml-1" class="text-white" href="{%url "post_list_by_tag_name" tag.slug %}">{{tag.name}}</a>  
+    {% comment %} {% if not forloop.last %},{% endif %} {% endcomment %}
+    {% endfor %}</p>
+    <hr>
+    <p class="font-italic"><b>Published : </b>{{post.publish}} <b class="ml-5">Updated : </b>{{post.updated}} <b class="ml-5">Author : </b>{{post.author}} <b class="ml-5">Status :</b>{{post.status}}</p>
+  </div>
+
+{% endfor %}
+</div>
+    <div class="col-4">
+    <h2>Recent Block</h2>
+     <div class="jumbotron">
+    {% for post in post_list1 %}
+     <div class="alert-success"><h3><a href="../read/{{post.pk}}"> {{post.title}}</a></h3></div>
+     <hr>
+     {% endfor %}
+     </div>
+    </div>
+</div>
+{% include "myapp/pagination.html" with page=post_list %}
+
+{% endblock rk %}

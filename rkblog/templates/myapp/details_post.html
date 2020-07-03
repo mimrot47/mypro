@@ -1,0 +1,38 @@
+{% extends 'myapp/base.html' %}
+{% block rk %}
+<div class="jumbotron mt-5 ">
+<div class="container">
+    <h1 class="text-center">{{post.title}}</h1>
+    <p class="lead">{{post.body}} </p>
+   
+    <hr class="my-4">
+    <p class="font-italic"><b>Published : </b>{{post.publish}} <b class="ml-5">Updated : </b>{{post.updated}} <b class="ml-5">Author : </b>{{post.author}} <b class="ml-5">Status :</b>{{post.status}}</p>
+     <hr>
+    {% with comment.count as comment_count %}
+    <h2>{{comment_count}} Comment{{comment_count|pluralize}}</h2>
+    {% endwith %}
+    {% if comment %}
+     {% for com in comment %}
+     <b><p>comments {{forloop.counter}} by {{com.name|title}} on {{com.created}}</p></b>
+     <p>{{com.body|linebreaks}}</p>
+     <hr>
+     {% endfor %}
+    {% else %}
+    <p> There are NO comments Yet ..!!</p>
+    {% endif %}
+    {% if cs %}
+     <h2> Your Comment Added Succefully</h2>
+    {% endif %}
+    
+    
+    
+     <form method="POST">
+     {{form.as_p}}
+     {% csrf_token %}
+     <input type="submit" class="btn btn-primary mb-5" value="Comment">
+     </form>
+    <a href="../block" class="btn btn-info">Back</a>
+    <a href="../{{post.id}}/share" class="btn btn-success text-right ml-5">share</a>
+    </div>
+  </div>
+{% endblock %}

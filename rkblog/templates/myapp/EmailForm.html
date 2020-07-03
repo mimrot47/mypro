@@ -1,0 +1,13 @@
+{% extends 'myapp/base.html' %}
+
+{% block rk %}
+<center>
+<h3>Share {{post.title}} Blog for your frieds</h3>
+<form method="POST" class="mt-2" role="form">
+{{form.as_p}}
+{% csrf_token %}
+<input type="submit" value="Share">
+</form>
+</center>
+
+{% endblock %}
