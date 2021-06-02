@@ -1,5 +1,5 @@
 body {
-    background-color: #cddddd;
+    background-color:;
 }
 
 .content {
@@ -10,4 +10,5 @@ body {
 .sidebar {
     width: 40%;
     float: right;
+    padding:0px;
 }
