@@ -1,11 +1,13 @@
-body{
+body {
     background-color: #cddddd;
 }
-.content{
+
+.content {
     width: 60%;
-    float: left;
+    /* float: left; */
 }
-.sidebar{
+
+.sidebar {
     width: 40%;
     float: right;
 }
